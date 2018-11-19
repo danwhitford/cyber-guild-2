@@ -1,6 +1,8 @@
 Vagrant.configure("2") do |config|
   config.vm.synced_folder '.', '/vagrant', disabled: true
-  config.vbguest.auto_update = false
+  if Vagrant.has_plugin?("vagrant-vbguest")
+    config.vbguest.auto_update = false
+  end
   
   config.vm.define "ub1404" do |ub1404|
     ub1404.vm.box = "rapid7/metasploitable3-ub1404"
